@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -25,28 +24,28 @@ public class EmployeeManager {
 
     public void addEmployee(int count){
 
-        try(BufferedReader  reader = new BufferedReader(new InputStreamReader(System.in))){
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
 
             for (int i = 0; i < count; ) {
                 String[] mas = new String[6];
 
-                System.out.println("/////////////////////////////////////////////////////////////////");
-                System.out.println("insert Name: ");
+                Main.line("-",'-');
+                System.out.print("insert Name: ");
                 mas[0] = reader.readLine();
 
-                System.out.println("insert Surname: ");
+                System.out.print("insert Surname: ");
                 mas[1] = reader.readLine();
 
-                System.out.println("sex: ");
+                System.out.print("sex: ");
                 mas[2] = reader.readLine();
 
-                System.out.println("Введите дату рождения в формате day.month.year : ");
+                System.out.print("Введите дату рождения в формате day.month.year : ");
                 mas[3] = reader.readLine();
 
-                System.out.println("address: ");
+                System.out.print("address: ");
                 mas[4] = reader.readLine();
 
-                System.out.println("salary: ");
+                System.out.print("salary: ");
                 mas[5] = reader.readLine();
 
                 try {
@@ -83,8 +82,27 @@ public class EmployeeManager {
 
     public void showEmployee(){
         for (int i = 0; i < list.size(); i++) {
-            System.out.println("/////////////////////////////////////////////////////////////////");
+            Main.line("-",'-');
             System.out.println(list.get(i).toString());
+        }
+    }
+
+    public void exportEmployee(String patch){
+        try(BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(patch))) {
+
+            for (int i = 0; i < list.size(); i++) {
+                String str = list.get(i).toString();
+                byte[] buff = str.getBytes();
+
+                for (int j = 0; j < buff.length; j++) {
+                    outputStream.write(j);
+                }
+
+                outputStream.write('\n');
+            }
+        }
+        catch (Exception ex){
+            System.out.println(ex);
         }
     }
 
