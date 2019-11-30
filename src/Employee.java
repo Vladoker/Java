@@ -19,8 +19,8 @@ public class Employee {
     }
 
     public String toString() {
-        return "Name: " + name + "\nSurname: " + surname + "\nSex: " + (sex ? "M":"W") + "\nAddress: " + address + "\nSalary: " + salary +
-               "\nДень: " +  date.get(Calendar.DAY_OF_MONTH) + " Месяц: " + (date.get(Calendar.MONTH) +1) + " Год: " + date.get(Calendar.YEAR);
+        return "Name: " + name + "\r\nSurname: " + surname + "\r\nSex: " + (sex ? "M":"W") + "\r\nAddress: " + address + "\r\nSalary: " + salary +
+               "\r\nДень: " +  date.get(Calendar.DAY_OF_MONTH) + " Месяц: " + (date.get(Calendar.MONTH) +1) + " Год: " + date.get(Calendar.YEAR);
     }
 
 

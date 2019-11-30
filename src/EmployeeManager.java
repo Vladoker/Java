@@ -88,17 +88,11 @@ public class EmployeeManager {
     }
 
     public void exportEmployee(String patch){
-        try(BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(patch))) {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(patch))) {
 
             for (int i = 0; i < list.size(); i++) {
-                String str = list.get(i).toString();
-                byte[] buff = str.getBytes();
-
-                for (int j = 0; j < buff.length; j++) {
-                    outputStream.write(j);
-                }
-
-                outputStream.write('\n');
+                bufferedWriter.write(list.get(i).toString());
+                bufferedWriter.write("\r\n************************************************\r\n");
             }
         }
         catch (Exception ex){
