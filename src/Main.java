@@ -2,10 +2,12 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args)  {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        BufferedReader reader;
+        try {
             EmployeeManager employeeManager = EmployeeManager.getInstance();
             String user;
             for (;;){
+                reader = new BufferedReader(new InputStreamReader(System.in));
                 user = "";
                 line("Employee Manager",'-');
                 System.out.println("1. Add employees");
@@ -28,6 +30,7 @@ public class Main {
                     employeeManager.exportEmployee("C:/JavaTest.txt");
                 }
                 else if (user.equals("0")){
+                    reader.close();
                     break;
                 }
             }
