@@ -22,10 +22,9 @@ public class EmployeeManager {
         return list.size();
     }
 
-    public void addEmployee(int count){
+    public void addEmployee(int count, BufferedReader reader){
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
-
+        try {
             for (int i = 0; i < count; ) {
                 String[] mas = new String[6];
 
