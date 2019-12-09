@@ -12,6 +12,8 @@ public class Main {
         System.out.println("1. Add employees");
         System.out.println("2. List employees");
         System.out.println("3. Export employees");
+        System.out.println("4. Search employee");
+        System.out.println("5. Delete employees");
         System.out.println("0. Exit");
         line("-",'-');
         System.out.print("choose option: ");
@@ -27,6 +29,15 @@ public class Main {
         }
         else if(user.equals("3")){
           employeeManager.exportEmployee("D:/JavaTest.txt");
+        }
+        else if(user.equals("4")){
+            System.out.print("Search: ");
+            Employee emp = employeeManager.searchEmployee(reader.readLine()) ;
+            System.out.println( emp != null ? emp.toString() : "not found !");
+        }
+        else if(user.equals("5")){
+            System.out.print("Delete: ");
+            System.out.println(employeeManager.deleteEmployee(reader.readLine()) ? "Deleted" : "not found !");
         }
         else if (user.equals("0")){
           reader.close();

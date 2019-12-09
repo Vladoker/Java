@@ -78,7 +78,6 @@ public class EmployeeManager {
         }
     }
 
-
     public void showEmployee(){
         for (int i = 0; i < list.size(); i++) {
             Main.line("-",'-');
@@ -97,6 +96,20 @@ public class EmployeeManager {
         catch (Exception ex){
             System.out.println(ex);
         }
+    }
+
+    public Employee searchEmployee(String nameAndSurname) {
+        for(Employee emp : list){
+            String temp = (emp.getName()+ " " + emp.getSurname()).toUpperCase();
+            String temp2 = (emp.getSurname()+ " " + emp.getName()).toUpperCase();
+            if (nameAndSurname.equalsIgnoreCase(temp) || nameAndSurname.equalsIgnoreCase(temp2)) return emp;
+        }
+        return null;
+    }
+
+    public boolean deleteEmployee(String nameAndSurname) {
+       Employee emp = this.searchEmployee(nameAndSurname);
+       return list.remove(emp);
     }
 
 }
