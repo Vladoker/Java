@@ -5,11 +5,11 @@ public class Employee {
 
     private String name,surname,address;
     private Calendar date;
-    private boolean sex;
+    private Gender sex;
     private double salary;
 
 
-    public Employee(String name, String surname,boolean sex, byte day, byte month, int year, String address, double salary) {
+    public Employee(String name, String surname,Gender sex, byte day, byte month, int year, String address, double salary) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -24,12 +24,12 @@ public class Employee {
     public String getSurname(){
         return surname;
     }
-    public boolean getSex() {
+    public Gender getSex() {
         return sex;
     }
 
     public String toString() {
-        return "Name: " + name + "\r\nSurname: " + surname + "\r\nSex: " + (sex ? "M":"W") + "\r\nAddress: " + address + "\r\nSalary: " + salary +
+        return "Name: " + name + "\r\nSurname: " + surname + "\r\nSex: " + sex.toString() + "\r\nAddress: " + address + "\r\nSalary: " + salary +
                "\r\nДень: " +  date.get(Calendar.DAY_OF_MONTH) + " Месяц: " + (date.get(Calendar.MONTH) +1) + " Год: " + date.get(Calendar.YEAR);
     }
 
@@ -41,9 +41,19 @@ public class Employee {
         Employee temp = (Employee) obj;
 
         return this.name.equals(temp.getName())
-                && this.surname.equals(temp.getSurname())
-                && this.sex == temp.getSex();
+            && this.surname.equals(temp.getSurname())
+            && this.sex == temp.getSex();
     }
+    @Override
+    public int hashCode() {
+        int result = 22;
+        result = 228 * result + name.hashCode();
+        result = 228 * result + surname.hashCode();
+        result = 228 * result + sex.hashCode();
+        return result;
+    }
+
+
 
 
 

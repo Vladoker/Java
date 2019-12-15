@@ -1,14 +1,16 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 
 public class EmployeeManager {
     private static EmployeeManager instance;
-    private ArrayList<Employee> list;
+    private Set<Employee> list;
 
 
     private EmployeeManager() {
-        list = new ArrayList<>();
+        list = new HashSet<>();
     }
 
     public static EmployeeManager getInstance(){
@@ -48,10 +50,10 @@ public class EmployeeManager {
                 mas[5] = reader.readLine();
 
                 try {
-                    boolean s = false;
+                    Gender s = Gender.FEMALE;
                     String strSex = mas[2].toUpperCase();
                     if (strSex.contains("B") || strSex.contains("M") || strSex.contains("М") || strSex.contains("1")){
-                        s = true;
+                        s = Gender.MALE;
                     }
 
                     String[] date = mas[3].split("\\.");
@@ -79,17 +81,18 @@ public class EmployeeManager {
     }
 
     public void showEmployee(){
-        for (int i = 0; i < list.size(); i++) {
+        Iterator iter = list.iterator();
+        for (; iter.hasNext(); ) {
             Main.line("-",'-');
-            System.out.println(list.get(i).toString());
+            System.out.println(iter.next().toString());
         }
     }
 
     public void exportEmployee(String patch){
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(patch))) {
 
-            for (int i = 0; i < list.size(); i++) {
-                bufferedWriter.write(list.get(i).toString());
+            for (Employee emp : list) {
+                bufferedWriter.write(emp.toString());
                 bufferedWriter.write("\r\n************************************************\r\n");
             }
         }
