@@ -23,16 +23,22 @@ public class XmlIOService {
     DocumentBuilder domBuilder = domBuilderFactory.newDocumentBuilder();
     Document doc = domBuilder.newDocument();
 
-    Element root = doc.createElement("employees");
+    Element root = doc.createElement("Employees");
 
     doc.appendChild(root);
     for (int i = 0; i < 3; i++) {
-      Element employee = doc.createElement("employee");
-      root.appendChild(employee.appendChild(
-              doc.createElement("name").appendChild(doc.createTextNode("Vladislav"))
-      ));
+     Element employee = doc.createElement("employee");
+     root.appendChild(employee);
 
-      employee.appendChild(doc.createElement("surname").appendChild(doc.createTextNode("Tomasciuc")));
+     Element name = doc.createElement("name");
+     Text nameValue = doc.createTextNode("Vladislav");
+     name.appendChild(nameValue);
+     employee.appendChild(name);
+
+      Element surname = doc.createElement("surname");
+      Text surnameValue = doc.createTextNode("Tomasciuc");
+      surname.appendChild(surnameValue);
+      employee.appendChild(surname);
     }
 
     doc.getDocumentElement().normalize();
@@ -46,5 +52,12 @@ public class XmlIOService {
     DOMSource source = new DOMSource(doc);
     StreamResult destination = new StreamResult(new File("D:/employee.xml"));
     transformer.transform(source, destination);
+
+
+
+
+
+
+
   }
 }
